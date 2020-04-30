@@ -7,8 +7,8 @@ module.exports = [
       {
         type: 'web dev',
         graduated: false,
-        year: 2018,
-        favoriteTopics: ['dom manipulation', 'react']
+        year: 2020,
+        favoriteTopics: ['dom manipulation', 'OOP']
       }
     ],
     campus: {
@@ -25,13 +25,13 @@ module.exports = [
       {
         type: 'web dev',
         graduated: false,
-        year: 2018,
-        favoriteTopics: ['dom manipulation', 'react']
+        year: 2020,
+        favoriteTopics: ['node', 'react']
       }
     ],
     campus: {
       city: 'miami',
-      postalCode: '33130',
+      postalCode: '33139',
       country: 'us'
     },
     isCareerChanger: false
@@ -49,7 +49,7 @@ module.exports = [
     ],
     campus: {
       city: 'miami',
-      postalCode: '33130',
+      postalCode: '33131',
       country: 'us'
     },
     isCareerChanger: true
@@ -62,13 +62,13 @@ module.exports = [
         type: 'web dev',
         graduated: true,
         year: 2018,
-        favoriteTopics: ['dom manipulation', 'react']
+        favoriteTopics: ['mongo', 'react']
       }
     ],
     campus: {
-      city: 'miami',
-      postalCode: '33130',
-      country: 'us'
+      city: 'vancouver',
+      postalCode: 'v5k 111',
+      country: 'ca'
     },
     isCareerChanger: false
   },
@@ -78,9 +78,9 @@ module.exports = [
     bootcamp: [
       {
         type: 'web dev',
-        favoriteTopics: ['express', 'angular'],
         graduated: true,
-        year: 2017
+        year: 2017,
+        favoriteTopics: ['express', 'angular']
       },
       {
         type: 'data analytics',
