@@ -3,7 +3,7 @@ module.exports = [
   {
     firstName: 'ana',
     lastName: 'smith',
-    bootcamp: [
+    bootcamps: [
       {
         type: 'web dev',
         graduated: false,
@@ -21,7 +21,7 @@ module.exports = [
   {
     firstName: 'maria',
     lastName: 'vazquez',
-    bootcamp: [
+    bootcamps: [
       {
         type: 'web dev',
         graduated: false,
@@ -39,12 +39,18 @@ module.exports = [
   {
     firstName: 'marc',
     lastName: 'anthony',
-    bootcamp: [
+    bootcamps: [
       {
         type: 'web dev',
         graduated: true,
         year: 2018,
         favoriteTopics: ['dom manipulation', 'react']
+      },
+      {
+        type: 'ux/ui',
+        graduated: true,
+        year: 2019,
+        favoriteTopics: ['sketch']
       }
     ],
     campus: {
@@ -57,7 +63,7 @@ module.exports = [
   {
     firstName: 'elon',
     lastName: 'musk',
-    bootcamp: [
+    bootcamps: [
       {
         type: 'web dev',
         graduated: true,
@@ -75,7 +81,7 @@ module.exports = [
   {
     firstName: 'max',
     lastName: 'perez',
-    bootcamp: [
+    bootcamps: [
       {
         type: 'web dev',
         graduated: true,

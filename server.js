@@ -23,51 +23,23 @@ app.use(myExpress.static('public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');
 
+// pointing handlebars where to look for partials
+hbs.registerPartials(__dirname + '/views/hbs-files/partials');
+
 // import fake data:
-const theData = require('./fake-data.js');
+const studentsList = require('./students-data.js');
+const teacherData = require('./teacher-data'); // <== you don't have to add .js
 
 // ***********************************
 // ROUTES:
 // ***********************************
 
 ///////////////////////////////////////////////////////////////////////////////
-// ****************************** HBS ROUTES *********************************
-///////////////////////////////////////////////////////////////////////////////
-
-//      '/students' => means localhost:3000/students <===> get the students' data when users hit this route
-//       ^
-//       |    callback function as 2nd argument
-app.get('/students', (req, res) => {
-  const justNames = theData.map(element => element.firstName);
-  //   console.log(justNames);
-
-  //            it's already pre-fixed with "/views/" that's why
-  //            we don't have to put the full path here
-  //                    ^
-  //                    |
-  res.render('hbs-files/students-data.hbs', { studentNames: justNames });
-  // "render()" sends a template file as a response
-});
-
-//      '/random' => means localhost:3000/random
-//       ^
-//       |    callback function as 2nd argument
-app.get('/random', (req, res) => {
-  const randomIndex = Math.floor(Math.random() * theData.length);
-  const dataToBeSent = {
-    randomStudent: theData[randomIndex]
-  };
-  //   console.log(dataToBeSent);
-  //                                    dataToBeSent: dataToBeSent
-  //   res.render('hbs-files/random-student', { dataToBeSent }); ==> if we would keep these {} around, we are actually nesting object inside object
-  //                                                                |-> dataToBeSent is already an object so having these curly braces around actually means nesting
-  //                                                                |-> then in hsb we would have to say {{ dataToBeSent.randomStudent.firstName }}
-  res.render('hbs-files/random-student', dataToBeSent);
-});
-
-///////////////////////////////////////////////////////////////////////////////
 // ****************************** HTML ROUTES *********************************
 ///////////////////////////////////////////////////////////////////////////////
+
+// - these routes don't give us opportunity to dynamically create content (they are static)
+// if you want to have pages that describe products you want to sell, you would have to have page for each  product (insane 🤯)
 
 //      '/' => means localhost:3000
 //       ^
@@ -103,6 +75,49 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) =>
   res.sendFile(__dirname + '/views/htmls/about.html')
 );
+
+///////////////////////////////////////////////////////////////////////////////
+// ****************************** HBS ROUTES *********************************
+///////////////////////////////////////////////////////////////////////////////
+
+// - HBS is a templating engine that solves the problem that we faced with static HTML pages
+// we can have ONE page with bunch of placeholders that will get replaced with actual value of every product
+
+//      '/students' => means localhost:3000/students <===> get the students' data when users hit this route
+//       ^
+//       |    callback function as 2nd argument
+app.get('/students', (req, res) => {
+  const justNames = studentsList.map(element => element.firstName);
+  //   console.log(justNames);
+
+  //            it's already pre-fixed with "/views/" that's why
+  //            we don't have to put the full path here
+  //                    ^
+  //                    |
+  res.render('hbs-files/students-info.hbs', { studentNames: justNames });
+  // "render()" sends a template file as a response
+});
+
+//      '/random' => means localhost:3000/random
+//       ^
+//       |    callback function as 2nd argument
+app.get('/random', (req, res) => {
+  const randomIndex = Math.floor(Math.random() * studentsList.length);
+  const dataToBeSent = { randomStudent: studentsList[randomIndex] };
+
+  // console.log(dataToBeSent);
+  //                                    dataToBeSent: dataToBeSent
+  //   res.render('hbs-files/random-student', { dataToBeSent }); ==> if we would keep these {} around, we are actually nesting object inside object
+  //                                                                |-> dataToBeSent is already an object so having these curly braces around actually means nesting
+  //                                                                |-> then in hsb we would have to say {{ dataToBeSent.randomStudent.firstName }}
+  res.render('hbs-files/random-student', dataToBeSent);
+});
+
+// **************** PARTIALS ****************************
+
+app.get('/about-teacher', (req, res) => {
+  res.render('hbs-files/teacher-info.hbs', teacherData);
+});
 
 app.listen(process.env.PORT, () =>
   console.log(`Running on port: ${process.env.PORT}`)

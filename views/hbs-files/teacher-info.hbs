@@ -1,0 +1,20 @@
+<h2>Here is the teacher info:</h2>
+
+<h3>Name: {{ name }}</h3>
+<p>{{ name }} is from {{ location }}.</p>
+<p>Currently, {{ name }} is {{ profession }}.</p>
+<hr>
+<h4>List one pet info:</h4>
+{{#with pet}}
+    {{> pet}}
+{{/with}}
+<hr>
+
+<h4>List array of pets info:</h4>
+<ul>
+    {{#each pets}}
+        <li>
+            {{> pet}}
+        </li>
+    {{/each}}
+</ul>
